@@ -1,10 +1,16 @@
 The Larget Goals Imaginable by Title Character Count Yup:
 python environment auto-setup w/some persistance
-ChatGpt plug and play with api-token
 Backup data-store for crucial codefiles/buckets
-Automated progress interactions and viewing
-Laptop and PC compatible
 Committing and git automation & synchronisity
+Automated progress interactions and viewing
+ChatGpt plug and play with api-token
 Shell customizations (aesthetic)
 Editor attached (full bore)
 Shell alias/script library
+Laptop and PC compatible
+
+08/13 quicklist for pc-laptop-xfer:
+Get C to easily mount bash extension via offset and reprogramming hotkeys
+Write python frontend for changing hotkeys and viewing current hotkeys
+Initiate research on auto-saving and non-git tracked save files
+Add chatgpt as SN and try to add 1-2 features for usefulness
