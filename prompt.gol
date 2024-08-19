@@ -1,0 +1,4 @@
+Prompt git detection features
+	- Read git parent directory from .git or something
+	- branch on line filepath another?
+	- stick to the sheet plans

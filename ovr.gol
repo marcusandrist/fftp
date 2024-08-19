@@ -14,3 +14,15 @@ Get C to easily mount bash extension via offset and reprogramming hotkeys
 Write python frontend for changing hotkeys and viewing current hotkeys
 Initiate research on auto-saving and non-git tracked save files
 Add chatgpt as SN and try to add 1-2 features for usefulness
+
+08/25 quicklist for laptopular commit:
+Get C to listen to raw input and record to a hotkey file
+	XProgram writes to file and can replace hotkeys...
+	-Either write over all hotkeys or idk
+	-Command-line input hotkeys? idkkk
+	-Chain functions in C dumbass.
+Finalize Git prompt features
+	-Need to build PS1 incrementally with a prompt command
+	XBranches and stuff are Good!
+	XCheck for change is good I think.
+	-Logic for stuff might need work.

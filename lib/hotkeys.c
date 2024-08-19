@@ -73,7 +73,8 @@ void adjust_hotkey(const char *file_path, const char *hotkey_name, const char *n
 }
 
 int main() {
-    const char *config_file = "config.ini";
+    const char *config_file = "hotkeys.file";
     adjust_hotkey(config_file, "copy", "Ctrl+Shift+C");
+    adjust_hotkey(config_file, "testcommand", "Ctrl+Shift+F");
     return 0;
 }
