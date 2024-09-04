@@ -1,13 +1,36 @@
-#!bash
-# Set new PS1 w/
+#!/bin/bash
 
-# Get user "tag"
-fullusername=`uname -n`
-out=$(echo ${fullusername} | cut -d "-" -f 2)
+# Change this to fftp directory path!
+export FFTP_PATH=/home/cus/fftp
 
-PS1='${debian_chroot:+($debian_chroot)}\e[0;35m\e[36m\u\[\e[0m@\e[30m${out}\D{[%H:%M]}\e[0m\e[0;33m${gitstuff}\e[0;35m\W\[\033[00m\]:'
+# Deprecated PS1 assignment
+#PS1='${debian_chroot:+($debian_chroot)}\e[0;35m\e[36m\u\[\e[0m@\e[30m${out}\D{[%H:%M]}\e[0m\e[0;33m${gitstuff}\e[0;35m\W\[\033[00m\]:'
 
-gitstufffunc(){
+#<------------[   Prompt Generation    ]------------>#
+
+make_prompt(){
+	PS1='${debian_chroot:+($debian_chroot)}'
+	PS1+='\[\e[0;36m\]\u'
+	PS1+='\[\e[0;0m\]$(usertag)\[\e[0;33m\]\D{%H:%M}'
+	colorgit
+	PS1+='$(gitbranch)'
+	PS1+='\[\e[0;35m\]\W'
+
+	# End Prompt Formatting
+	PS1+='\[\033[00m\]:'
+}
+
+PROMPT_COMMAND='make_prompt'
+
+#<------------[  Function Definitions  ]------------>#
+
+colorgit(){
+	porcelain=$(git status --porcelain=v1 2>/dev/null)
+	color_code=$(echo "$porcelain" | $FFTP_PATH/lib/git_parse/main)
+	PS1+='\[\e[0;${color_code}m\]'
+}
+
+gitbranch(){
     myvar="(`(git branch 2>/dev/null | sed "s/* //")`)"
     if [ ${#myvar} -gt 3 ]; then
         echo $myvar
@@ -16,34 +39,13 @@ gitstufffunc(){
 	fi
 }
 
-gitcheck(){
-    read -r input
-    if echo $input | grep -q -e D -e M; then
-	echo found
-    else
-        echo not found
-    fi
-}
-
-#echo `(git status --porcelain=v1)` | gitcheck
-
-#inp="\[\e[0;35m\]Purple\[\e[0m\]"
-
-PROMPT_COMMAND='gitstuff=$(gitstufffunc)'
-
-#Note- create func then call it to update each time?
-#set_prompt(){
-#some logic
-#PS1+='expand PS1'
-#var=somefuncton()
-#PS1+='var'
-#PROMPT_COMMAND='set_prompt'
-
-#Go to user's home directory (customizable in settings)
-inp="${HOME}/.vim"
-echo $inp
-echo "hi" >> "${HOME}/.bashrc"
-echo "cd ${HOME}/C" >> "${HOME}/.bashrc"
-
 #<------------Function Definitions------------>#
 
+# Get user "tag"- needs modularity
+usertag(){
+	full_user=`uname -n`
+	echo ${full_user} | cut -d "-" -f 2
+}
+
+# Deprecated PS1 assignment
+#PS1='${debian_chroot:+($debian_chroot)}\e[0;35m\e[36m\u\[\e[0m@\e[30m${out}\D{[%H:%M]}\e[0m\e[0;33m${gitstuff}\e[0;35m\W\[\033[00m\]:'
