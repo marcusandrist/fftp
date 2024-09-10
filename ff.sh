@@ -1,15 +1,17 @@
 #!/bin/bash
 
 # Change this to fftp directory path!
-export FFTP_PATH=/home/cus/fftp
-
-# Deprecated PS1 assignment
-#PS1='${debian_chroot:+($debian_chroot)}\e[0;35m\e[36m\u\[\e[0m@\e[30m${out}\D{[%H:%M]}\e[0m\e[0;33m${gitstuff}\e[0;35m\W\[\033[00m\]:'
+export FFTP_PATH=/home/cus/C/fftp
 
 #<------------[   Prompt Generation    ]------------>#
 
 make_prompt(){
 	PS1='${debian_chroot:+($debian_chroot)}'
+
+	if [ -n "$VIRTUAL_ENV" ]; then
+        PS1+="$(basename $VIRTUAL_ENV)~"  # Add venv name in parentheses
+    fi
+
 	PS1+='\[\e[0;36m\]\u'
 	PS1+='\[\e[0;0m\]$(usertag)\[\e[0;33m\]\D{%H:%M}'
 	colorgit
@@ -31,7 +33,7 @@ colorgit(){
 }
 
 gitbranch(){
-    myvar="(`(git branch 2>/dev/null | sed "s/* //")`)"
+	myvar="($(git branch 2>/dev/null | grep '\*' | sed 's/* //'))"
     if [ ${#myvar} -gt 3 ]; then
         echo $myvar
 	else
@@ -39,13 +41,15 @@ gitbranch(){
 	fi
 }
 
-#<------------Function Definitions------------>#
-
 # Get user "tag"- needs modularity
 usertag(){
 	full_user=`uname -n`
 	echo ${full_user} | cut -d "-" -f 2
 }
 
-# Deprecated PS1 assignment
-#PS1='${debian_chroot:+($debian_chroot)}\e[0;35m\e[36m\u\[\e[0m@\e[30m${out}\D{[%H:%M]}\e[0m\e[0;33m${gitstuff}\e[0;35m\W\[\033[00m\]:'
+#<------------[    Bash Extensionss    ]------------>#
+
+# Aliases
+if [ -f ./.bash_aliases ]; then
+	. ./.bash_aliases
+fi

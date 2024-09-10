@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# Navigation
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+
+# Git
+alias gaa="git add --a"
+alias gcm="git commit -m"
+
+# Python
+alias "makevenv"="python3 -m venv .venv"
+alias "srcvenv"="source $PWD/.venv/bin/activate"
+alias "makesrcvenv"="makevenv && srcvenv"
+alias "novenv"="deactivate"
+
+# Scripts
