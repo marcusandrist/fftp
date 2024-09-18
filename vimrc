@@ -5,6 +5,12 @@ set background=dark
 let jay_transparent=1
 colorscheme jay
 
+" WSL clipboard
+vnoremap p :w !clip.exe<CR>
+
+" Ubuntu clipboard
+set clipboard=unnamedplus
+
 " Tabstuff
 augroup FiletypeSettings
   autocmd!
