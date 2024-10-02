@@ -1,2 +1,2 @@
-def audiobook_solution(audiobooks, logs):
+def audiobook_solution(audiobook, logs):
 	print("Test")
