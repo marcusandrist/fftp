@@ -1,6 +1,0 @@
-Some Decently Sized Alias Goals That Unlock Cool Stuff
-- Take stdin with modifier keys for aliases and vimrc remaps
-- Print the resulting keybinds/print all existing keybinds
-- Modular uname customization and path setup
-- Modular alias setup for scripts and non-necessitated stuff
-- Write this all in C
